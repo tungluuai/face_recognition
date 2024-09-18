@@ -19,7 +19,7 @@
 ## Performance:
 |                              | DenseNet121 | YOLOv8 + FaceNet + SVM |
 |------------------------------|-------------|------------------------|
-| **Training Set **                |             |                        |
+| **Training Set**                |             |                        |
 | Accuracy                     | <div align="center">0.99</div>       | <div align="center">0.99</div>                   |
 | Precision                    | <div align="center">0.99</div>       | <div align="center">0.99</div>                   |
 | Recall                       | <div align="center">0.99</div>        | <div align="center">0.99</div>                   |
