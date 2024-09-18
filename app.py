@@ -1,3 +1,4 @@
+import argparse
 import tkinter as tk
 from tkinter import filedialog
 from PIL import Image, ImageTk
@@ -71,10 +72,20 @@ class FaceRecognitionApp:
         else:
             self.label_name.config(text=f"Predicted Name: {predicted_name}\nProbability: {round(prob,2)}", font=("Helvetica", 16, "bold"))
 
+def parse_args():
+    parser = argparse.ArgumentParser(description="Face Recognition App")
+    parser.add_argument('--yolo_model', type=str, required=True, help="Path to YOLO model file")
+    parser.add_argument('--facenet_model', type=str, required=True, help="Path to FaceNet model file")
+    parser.add_argument('--svm_model', type=str, required=True, help="Path to SVM model file")
+    return parser.parse_args()
+
 if __name__ == "__main__":
-    YOLO_model = YOLO('../../load_model/yolov8n-face.pt')
+    args = parse_args()
+    
+    YOLO_model = YOLO(args.yolo_model)
     embedder = FaceNet()
-    SVM_model = pickle.load(open('../../load_model/extra_SVM.pickle', 'rb'))
+    SVM_model = pickle.load(open(args.svm_model, 'rb'))
+    
     root = tk.Tk()
     app = FaceRecognitionApp(root, YOLO_model, embedder, SVM_model)
     root.mainloop()
